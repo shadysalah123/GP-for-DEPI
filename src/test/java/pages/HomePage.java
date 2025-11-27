@@ -15,16 +15,19 @@ public class HomePage {
     WebDriverWait wait;
 
     // ===== LOCATORS =====
-    By myAccountMenu = By.xpath("//a[contains(@class, 'dropdown-toggle') and .//i[contains(@class,'fa-user')]]");
-    By registerLink = By.cssSelector("a.dropdown-item[href*='route=account/register']");
-    By loginLink = By.cssSelector("a.dropdown-item[href*='route=account/login']");
+    By myAccountMenu = By.xpath("//i[@class=\"fa-solid fa-user\"]");
+    By registerLink = By.linkText("Register");
+    By loginLink = By.linkText("Login");
     By searchInput = By.name("search");
-    By searchButton = By.xpath("//button[@type='submit' and .//i[contains(@class,'fa-magnifying-glass')]]");
-    By shoppingCart = By.xpath("//a[contains(@href, 'route=checkout/cart')]");
-    By wishlistLink = By.xpath("//a[contains(@href, 'route=account/wishlist')]");
-    By checkoutLink = By.xpath("//a[contains(@href, 'route=checkout/checkout')]");
-    By cartButton = By.xpath("//button[contains(@class, 'btn-dark') and .//i[contains(@class,'fa-cart-shopping')]]");
-    By cartItemsCount = By.xpath("//button[contains(@class, 'btn-dark')]");
+    By searchButton = By.xpath("//i[@class=\"fa-solid fa-magnifying-glass\"]");
+    By cartButton = By.xpath("//button[@class=\"btn btn-lg btn-dark d-block dropdown-toggle\"]");
+    By shoppingCart = By.xpath("//a[@title=\"Shopping Cart\"]");
+    By wishlistLink = By.id("wishlist-total");
+    By checkoutLink = By.xpath("//a[@title=\"Checkout\"]");
+    By removefrmsCartdrop = By.xpath("//i[@class=\"fa-solid fa-circle-xmark\"]");
+    By clicksimpleprod  = By.xpath("//img[@title=\"MacBook\"]");
+    By clickprodwithopt = By.xpath("//img[@title=\"Canon EOS 5D\"]");
+
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -47,16 +50,13 @@ public class HomePage {
     }
 
     public void searchForProduct(String productName) {
-        wait.until(ExpectedConditions.presenceOfElementLocated(searchInput));
         driver.findElement(searchInput).clear();
         driver.findElement(searchInput).sendKeys(productName);
         driver.findElement(searchButton).click();
     }
 
     public void openShoppingCart() {
-        try {
-            wait.until(ExpectedConditions.presenceOfElementLocated(shoppingCart));
-            WebElement cartElement = driver.findElement(shoppingCart);
+         WebElement cartElement = driver.findElement(shoppingCart);
             
             // Scroll element into view
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", cartElement);
@@ -75,10 +75,6 @@ public class HomePage {
             } catch (org.openqa.selenium.ElementClickInterceptedException e) {
                 // If intercepted, use JavaScript click
                 ((JavascriptExecutor) driver).executeScript("arguments[0].click();", cartElement);
-            }
-        } catch (Exception e) {
-            // Fallback: navigate directly to cart URL
-            driver.get("http://localhost/opencartproject/index.php?route=checkout/cart&language=en-gb");
         }
     }
 
