@@ -27,11 +27,14 @@ public class HomePage {
     By clickprodwithopt = By.xpath("//img[@title=\"Canon EOS 5D\"]");
     By viewcartfrmcartdrop = By.linkText("View Cart");
     By checkoutfrmcartdrop = By.xpath("//*[@id=\"cart\"]/div/ul/li/div/p/a[2]/strong");
-
+    By categ_select = By.xpath("//*[@id=\"navbar-menu\"]/ul/li[1]");
+    By open_categ = By.xpath("//*[@id=\"navbar-menu\"]/ul/li[1]/div/ul/li[2]");
+    By open_subcateg = By.xpath("//*[@id=\"navbar-menu\"]/ul/li[1]/div/div/ul/li[2]");
+    // ==== Constructor =====
     public HomePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));}
-    // ===== NAVIGATION METHODS =====
+    // ===== NAVIGATION METHODS ======
     public void openRegisterPage() {
         wait.until(ExpectedConditions.elementToBeClickable(myAccountMenu));
         driver.findElement(myAccountMenu).click();
@@ -61,4 +64,10 @@ public class HomePage {
         driver.findElement(viewcartfrmcartdrop).click();}
     public void Checkout_frmCartdrop() {
         driver.findElement(checkoutfrmcartdrop).click();}
+    public void open_categ_page(){
+        driver.findElement(categ_select).click();
+        driver.findElement(open_categ).click();}
+    public void open_subcateg_page(){
+        driver.findElement(categ_select).click();
+        driver.findElement(open_subcateg).click();}
 }
