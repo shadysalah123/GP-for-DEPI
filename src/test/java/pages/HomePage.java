@@ -8,11 +8,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class HomePage {
-
     WebDriver driver;
     WebDriverWait wait;
-
-    // ===== LOCATORS =====
+    //                  ===== LOCATORS =====
     By myAccountMenu = By.xpath("//i[@class=\"fa-solid fa-user\"]");
     By registerLink = By.linkText("Register");
     By loginLink = By.linkText("Login");
@@ -30,11 +28,11 @@ public class HomePage {
     By categ_select = By.xpath("//*[@id=\"navbar-menu\"]/ul/li[1]");
     By open_categ = By.xpath("//*[@id=\"navbar-menu\"]/ul/li[1]/div/ul/li[2]");
     By open_subcateg = By.xpath("//*[@id=\"navbar-menu\"]/ul/li[1]/div/div/ul/li[2]");
-    // ==== Constructor =====
+    //                  ===== Constructor ======
     public HomePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));}
-    // ===== NAVIGATION METHODS ======
+    //                  ===== ACTIONS =====
     public void openRegisterPage() {
         wait.until(ExpectedConditions.elementToBeClickable(myAccountMenu));
         driver.findElement(myAccountMenu).click();
@@ -70,4 +68,6 @@ public class HomePage {
     public void open_subcateg_page(){
         driver.findElement(categ_select).click();
         driver.findElement(open_subcateg).click();}
+    //                  ===== ASSERTION  =====
+
 }

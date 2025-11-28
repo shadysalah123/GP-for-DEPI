@@ -13,8 +13,8 @@ import java.time.Duration;
 public class test_base {
 
     protected WebDriver driver;
-    protected RegisterPage register;
     protected HomePage home;
+    protected RegisterPage register;
     protected LoginPage login;
     protected SearchPage search;
     protected ProductPage product;

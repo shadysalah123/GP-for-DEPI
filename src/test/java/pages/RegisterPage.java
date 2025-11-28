@@ -10,10 +10,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class RegisterPage {
-
     WebDriver driver;
     WebDriverWait wait;
-    // ===== LOCATORS =====
+    //                  ===== LOCATORS =====
     By firstName = By.id("input-firstname");
     By lastName = By.id("input-lastname");
     By email = By.id("input-email");
@@ -27,11 +26,11 @@ public class RegisterPage {
     By emailError = By.id("error-email");
     By passwordError = By.id("error-password");
     By acceptpolicyerror = By.xpath("//*[@id=\"alert\"]/div");
-    // Constructor
+    //                  ===== Constructor ======
     public RegisterPage(WebDriver driver){
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));}
-    // ===== ACTIONS =====
+    //                  ===== ACTIONS =====
     public void registerNewUser(String fName, String lName, String emailValue, String pass, boolean subscribeNewsletter) {
         wait.until(ExpectedConditions.presenceOfElementLocated(firstName));
         driver.findElements(firstName).clear();
@@ -50,6 +49,6 @@ public class RegisterPage {
     public void clickContinue() {
         wait.until(ExpectedConditions.elementToBeClickable(continueBtn));
         driver.findElement(continueBtn).click();}
-    // ===== ASSERTION  =====
+    //                  ===== ASSERTION  =====
 
 }
