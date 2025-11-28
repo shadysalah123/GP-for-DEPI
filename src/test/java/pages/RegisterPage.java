@@ -1,11 +1,10 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -20,12 +19,12 @@ public class RegisterPage {
     By newsletterCheckbox = By.id("input-newsletter");
     By agreePolicy = By.name("agree");
     By continueBtn = By.xpath("//button[@class='btn btn-primary']");
-    By errorMessage = By.xpath("//*[@id=\"alert\"]/div");
+    By dublicateerrormsg = By.linkText(" Warning: E-Mail Address is already registered! ");
     By firstNameError = By.id("error-firstname");
     By lastNameError = By.id("error-lastname");
     By emailError = By.id("error-email");
     By passwordError = By.id("error-password");
-    By acceptpolicyerror = By.xpath("//*[@id=\"alert\"]/div");
+    By acceptpolicyerror = By.linkText(" Warning: You must agree to the Privacy Policy! ");
     //                  ===== Constructor ======
     public RegisterPage(WebDriver driver){
         this.driver = driver;
@@ -50,5 +49,18 @@ public class RegisterPage {
         wait.until(ExpectedConditions.elementToBeClickable(continueBtn));
         driver.findElement(continueBtn).click();}
     //                  ===== ASSERTION  =====
-
+    public void Assert_dublicateacc_errormsg() {
+        Assert.assertTrue(driver.findElement(dublicateerrormsg).isDisplayed());
+        Assert.assertEquals(driver.getCurrentUrl(),"http://localhost/opencartproject/index.php?route=account/register&language=en-gb");}
+    public void Assert_reg_without_accept_policy() {
+        Assert.assertTrue(driver.findElement(acceptpolicyerror).isDisplayed());
+        Assert.assertEquals(driver.getCurrentUrl(),"http://localhost/opencartproject/index.php?route=account/register&language=en-gb");}
+    public void Assert_invalidacc_errormsg() {
+        Assert.assertTrue(driver.findElement(emailError).isDisplayed());
+        Assert.assertEquals(driver.getCurrentUrl(),"http://localhost/opencartproject/index.php?route=account/register&language=en-gb");}
+    public void Assert_emptyfields_errors_msg() {
+        Assert.assertTrue(driver.findElement(firstNameError).isDisplayed());
+        Assert.assertTrue(driver.findElement(lastNameError).isDisplayed());
+        Assert.assertTrue(driver.findElement(passwordError).isDisplayed());
+        Assert.assertEquals(driver.getCurrentUrl(),"http://localhost/opencartproject/index.php?route=account/register&language=en-gb");}
 }

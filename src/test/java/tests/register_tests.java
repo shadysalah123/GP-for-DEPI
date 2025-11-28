@@ -6,58 +6,51 @@ import org.testng.annotations.Test;
 public class register_tests extends test_base {
 
     @Test
-    public void register_valid_user() {
+    public void successful_user_registration() {
         home.openRegisterPage();
-        String email = "automation" + System.currentTimeMillis() + "@gmail.com";
-        register.registerNewUser("automation", "reg", email, "mohamed123");
-        
-        // Verify registration is successful
-        Assert.assertTrue(register.isRegistrationSuccessful(), "Registration should be successful");
-    }
-
-    @Test
-    public void register_user_with_newsletter() {
-        home.openRegisterPage();
-        String email = "newsletter" + System.currentTimeMillis() + "@gmail.com";
-        register.registerNewUser("Test", "User", email, "password123", true);
-        
-        // Verify registration is successful
-        Assert.assertTrue(register.isRegistrationSuccessful(), "Registration with newsletter should be successful");
-    }
-
-    @Test
-    public void register_with_duplicate_email() {
-        home.openRegisterPage();
-        String email = "duplicate" + System.currentTimeMillis() + "@gmail.com";
-        
-        // Register first time
-        register.registerNewUser("First", "User", email, "password123");
-        Assert.assertTrue(register.isRegistrationSuccessful(), "First registration should be successful");
-        
-        // Try to register again with same email
-        driver.get("http://localhost/opencartproject/index.php?route=account/register&language=en-gb");
-        register.registerNewUser("Second", "User", email, "password123");
-        
-        // Verify error is displayed
-        Assert.assertTrue(register.hasError(), "Error should be displayed for duplicate email");
-    }
-
-    @Test
-    public void register_with_empty_fields() {
-        home.openRegisterPage();
+        register.registerNewUser("Test", "User", "testuser@gmail.com", "password123", true);
+        register.agreeToPrivacyPolicy();
         register.clickContinue();
-        
-        // Verify validation errors are displayed
-        Assert.assertTrue(register.isFirstNameErrorDisplayed() || register.isEmailErrorDisplayed(), 
-            "Validation errors should be displayed for empty fields");
+        sucseesRegPage.Assert_user_reg_succesful();
     }
+    @Test
+    public void registration_with_existing_email() {
+        home.openRegisterPage();
+        register.registerNewUser("Test", "User", "testuser@gmail.com", "password123", true);
+        register.agreeToPrivacyPolicy();
+        register.clickContinue();
+        register.Assert_dublicateacc_errormsg();
+    }
+    @Test
+    public void registration_without_accept_policy() {
+        home.openRegisterPage();
+        register.registerNewUser("Test", "User", "testuser2@gmail.com", "password123", true);
+        register.clickContinue();
+        register.Assert_reg_without_accept_policy();
+    }
+    @Test
+    public void registration_without_subscripe_newsletter() {
+        home.openRegisterPage();
+        register.registerNewUser("Test2", "User2", "testuser2@gmail.com", "password123", false);
+        register.agreeToPrivacyPolicy();
+        register.clickContinue();
 
+    }
     @Test
     public void register_with_invalid_email() {
         home.openRegisterPage();
-        register.registerNewUser("Test", "User", "invalid-email", "password123");
-        
-        // Verify email validation error
-        Assert.assertTrue(register.isEmailErrorDisplayed(), "Email validation error should be displayed");
+        register.registerNewUser("Test", "User", "invalid-email", "password123",true);
+        register.agreeToPrivacyPolicy();
+        register.clickContinue();
+        register.Assert_invalidacc_errormsg();
     }
+    @Test
+    public void register_with_empty_fields() {
+        home.openRegisterPage();
+        register.registerNewUser("", "", "", "",false);
+        register.clickContinue();
+        A
+    }
+
+
 }

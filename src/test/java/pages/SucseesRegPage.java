@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -27,5 +28,7 @@ public class SucseesRegPage {
         driver.findElement(myAccountMenu).click();
         driver.findElement(myaccbtn).click();}
     //                  ===== ASSERTION  =====
-
+    public void Assert_user_reg_succesful  (){
+        Assert.assertTrue(driver.findElement(successRegmessage).isDisplayed());
+    }
 }
