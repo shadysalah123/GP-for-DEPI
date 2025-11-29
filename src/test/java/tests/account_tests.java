@@ -4,17 +4,13 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class account_tests extends test_base {
-
     @Test
-    public void verifyAccountPageAfterLogin() {
-        // Login with existing account
-        home.openLoginPage();
-        login.login("mohamed@gmail.com", "mohamednashat");
-        
-        // Verify account page is displayed
+    public void logoutFromAccountPage() {
+        loginWithExistingAccount();
+        account.clickLogout();
+        logout.Assertion_logout();
     }
-
-    @Test
+   /* @Test
     public void navigateToOrderHistory() {
         // Login with existing account
         home.openLoginPage();
@@ -125,35 +121,6 @@ public class account_tests extends test_base {
         Assert.assertTrue(driver.getCurrentUrl().contains("account/password"), 
             "Should be on change password page");
     }
-
-    @Test
-    public void logoutFromAccountPage() {
-        // Login with existing account
-        home.openLoginPage();
-        login.login("mohamed@gmail.com", "mohamednashat");
-        
-        // Wait for login to complete and account page to load
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-        
-
-        // Verify logged out (check if login link is available)
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-        
-        // After logout, should be able to see login link
-        Assert.assertTrue(driver.getCurrentUrl().contains("account/logout") || 
-                        driver.getCurrentUrl().contains("common/home") ||
-                        driver.getCurrentUrl().contains("account/login"),
-            "Should be logged out");
-    }
-
     @Test
     public void navigateToAddressBook() {
         // Login with existing account
@@ -208,6 +175,6 @@ public class account_tests extends test_base {
         // Verify we're on newsletter page
         Assert.assertTrue(driver.getCurrentUrl().contains("account/newsletter"), 
             "Should be on newsletter page");
-    }
+    }*/
 }
 

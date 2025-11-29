@@ -23,7 +23,7 @@ public class product_tests extends test_base {
         driver.get("http://localhost/opencartproject/index.php?route=product/product&language=en-gb&product_id=43");
         
         // Add product to cart with quantity 2
-        product.addToCartWithQuantity(2);
+        product.addToCartWithQuantity("2");
         // Verify product was added successfully
         Assert.assertTrue(product.isAddToCartSuccessful(), "Product should be added to cart with specified quantity");
     }

@@ -12,12 +12,11 @@ import java.util.List;
 
 public class CategoryPage {
 
-    private final WebDriver driver;
-    private final WebDriverWait wait;
-
-    private final By categoryHeading = By.cssSelector("#content h1, #content h2, #content h3");
-    private final By sortDropdown = By.id("input-sort");
-    private final By productNames = By.cssSelector(".product-thumb h4 a");
+    WebDriver driver;
+    WebDriverWait wait;
+    By categoryHeading = By.cssSelector("#content h1, #content h2, #content h3");
+    By sortDropdown = By.id("input-sort");
+    By productNames = By.cssSelector(".product-thumb h4 a");
 
     public CategoryPage(WebDriver driver) {
         this.driver = driver;

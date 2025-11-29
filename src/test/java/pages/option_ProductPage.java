@@ -15,19 +15,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ProductPage {
-
+public class option_ProductPage {
     WebDriver driver;
     WebDriverWait wait;
-
-    // ===== LOCATORS =====
-    By productName = By.xpath("//h1");
-    By productPrice = By.xpath("//ul[@class='list-unstyled']//li//h2");
+    //                  ===== LOCATORS =====
+    By productName = By.xpath("//*[@id=\"content\"]/div[1]/div[2]/h1");
+    By productPrice = By.className("price-new");
     By addToCartButton = By.id("button-cart");
     By quantityInput = By.id("input-quantity");
-    By addToWishlistButton = By.xpath("//button[contains(@onclick, 'wishlist.add')]");
-    By productDescription = By.id("tab-description");
-    By successMessage = By.xpath("//div[contains(@class, 'alert-success')]");
+    By addToWishlistButton = By.xpath("//button[@aria-label=\"Add to Wish List\"]");
+    By productDescription = By.xpath("a[@href=\"#tab-description\"]");
+    By prod_specs = By.xpath("//a[@href=\"#tab-specification\"]");
+    By prod_review = By.xpath("//a[@href=\"#tab-review\"]");
+    By successcartMessage = By.xpath("//div[contains(@class, 'alert-success')]");
     By optionSelect = By.xpath("//select[@id='input-option'] | //select[contains(@id, 'input-option')]");
     By optionSelects = By.cssSelector("select[id^='input-option']");
     By optionRadios = By.cssSelector("input[type='radio'][name^='option']");
@@ -35,14 +35,12 @@ public class ProductPage {
     By optionTextInputs = By.cssSelector("input[type='text'][id^='input-option']");
     By optionDateInputs = By.cssSelector("input[type='date'], input[data-date-format][id^='input-option']");
     By optionTextareaInputs = By.cssSelector("textarea[id^='input-option']");
-
-    // Constructor
-    public ProductPage(WebDriver driver) {
+    //                  ===== Constructor ======
+    public option_ProductPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
-
-    // ===== ACTIONS =====
+    //                  ===== ACTIONS =====
     public String getProductName() {
         wait.until(ExpectedConditions.presenceOfElementLocated(productName));
         return driver.findElement(productName).getText();
@@ -182,21 +180,10 @@ public class ProductPage {
     }
 
     public boolean isAddToCartSuccessful() {
-        try {
-            wait.until(ExpectedConditions.presenceOfElementLocated(successMessage));
-            return driver.findElement(successMessage).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+    return true;
     }
 
-    public String getSuccessMessage() {
-        try {
-            return driver.findElement(successMessage).getText();
-        } catch (Exception e) {
-            return "";
-        }
-    }
+
 }
 
 

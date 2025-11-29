@@ -15,6 +15,7 @@ public class AccountPage {
     WebDriver driver;
     WebDriverWait wait;
     //                  ===== LOCATORS =====
+    By logo = By.className("img-fluid");
     By pageTitle = By.xpath("//*[@id=\"content\"]/h1");
     By editAccountLink = By.linkText("Edit your account information");
     By changePasswordLink = By.linkText("Change your password");
@@ -22,7 +23,7 @@ public class AccountPage {
     By wishlistLink = By.linkText("Modify your wish list");
     By orderHistoryLink = By.linkText("View your order history");
     By newsletterLink = By.linkText("Subscribe / unsubscribe to newsletter");
-    By logoutLink = By.xpath("//*[@id=\"column-right\"]/div/a[14]");
+    By logoutLink = By.linkText("Logout");
     By myAccountMenu = By.xpath("//i[@class=\"fa-solid fa-user\"]");
     By myaccbtn = By.xpath("//*[@id=\"top\"]/div/div/div[2]/ul/li[2]/div/ul/li[1]/a");
     //                  ===== Constructor ======
@@ -31,6 +32,9 @@ public class AccountPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
     //                  ===== ACTIONS =====
+    public void openhomepage (){
+        wait.until(ExpectedConditions.elementToBeClickable(logo));
+        driver.findElement(logo).click();}
     public void clickEditAccount() {
         wait.until(ExpectedConditions.elementToBeClickable(editAccountLink));
         driver.findElement(editAccountLink).click();}
@@ -57,6 +61,6 @@ public class AccountPage {
         wait.until(ExpectedConditions.presenceOfElementLocated(pageTitle));
         Assert.assertTrue(driver.findElement(pageTitle).isDisplayed());
         driver.findElement(myAccountMenu).click();
-        Assert.assertTrue(driver.findElement(myaccbtn).isDisplayed());
-    }
+        Assert.assertTrue(driver.findElement(myaccbtn).isDisplayed());}
+
 }

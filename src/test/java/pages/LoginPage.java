@@ -56,5 +56,3 @@ public class LoginPage {
         Assert.assertEquals(driver.getCurrentUrl(),"http://localhost/opencartproject/index.php?route=account/login&language=en-gb");
     }
 }
-// Warning: No match for E-Mail Address and/or Password.
-// Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour.

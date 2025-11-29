@@ -8,7 +8,6 @@ public class login_tests extends test_base {
     @Test
     public void loginWithValidCredentials() {
         loginWithExistingAccount();
-        login.click_login_btn();
         account.Assertion_login_invalidemail();
     }
     @Test
