@@ -63,4 +63,5 @@ public class RegisterPage {
         Assert.assertTrue(driver.findElement(lastNameError).isDisplayed());
         Assert.assertTrue(driver.findElement(passwordError).isDisplayed());
         Assert.assertEquals(driver.getCurrentUrl(),"http://localhost/opencartproject/index.php?route=account/register&language=en-gb");}
+
 }

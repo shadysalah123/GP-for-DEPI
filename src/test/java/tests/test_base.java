@@ -16,6 +16,7 @@ public class test_base {
     protected HomePage home;
     protected RegisterPage register;
     protected SucseesRegPage sucseesRegPage ;
+    protected newsletterpage newsletterpage;
     protected LoginPage login;
     protected AccountPage account;
     protected SearchPage search;
@@ -39,6 +40,7 @@ public class test_base {
         home = new HomePage(driver);
         register = new RegisterPage(driver);
         sucseesRegPage =new SucseesRegPage(driver);
+        newsletterpage = new newsletterpage(driver);
         login = new LoginPage(driver);
         account = new AccountPage(driver);
         search = new SearchPage(driver);
@@ -62,5 +64,9 @@ public class test_base {
     protected void userinregpage() {
         home.openLoginPage();
         login.login("mohamed@gmail.com", "mohamednashat");
+    }
+    protected void access_newsletter_bage() {
+        sucseesRegPage.clickContinue();
+        account.clickNewsletter();
     }
 }

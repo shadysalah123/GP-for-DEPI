@@ -16,6 +16,7 @@ public class SucseesRegPage {
     By continueBtn = By.linkText("Continue");
     By myAccountMenu = By.xpath("//i[@class=\"fa-solid fa-user\"]");
     By myaccbtn = By.xpath("//*[@id=\"top\"]/div/div/div[2]/ul/li[2]/div/ul/li[1]/a");
+
     //                  ===== Constructor ======
     public SucseesRegPage(WebDriver driver){
         this.driver = driver;
@@ -29,6 +30,7 @@ public class SucseesRegPage {
         driver.findElement(myaccbtn).click();}
     //                  ===== ASSERTION  =====
     public void Assert_user_reg_succesful  (){
-        Assert.assertTrue(driver.findElement(successRegmessage).isDisplayed());
-    }
+        driver.findElement(myAccountMenu).click();
+        Assert.assertTrue(driver.findElement(myaccbtn).isDisplayed());
+        Assert.assertTrue(driver.findElement(successRegmessage).isDisplayed());}
 }
