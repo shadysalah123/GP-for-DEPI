@@ -51,16 +51,14 @@ public class test_base {
         // Navigate to Home Page (Your Local Project)
         driver.get("http://localhost/opencartproject/index.php?route=common/home&language=en-gb");
     }
-
-   @AfterMethod
+  /* @AfterMethod
     public void tearDown() {
         driver.quit();
-    }
-
+    }*/
     //  ===== Helper method to preconditions =====
     protected void loginWithExistingAccount() {
         home.openLoginPage();
-        login.login("mohamed@gmail.com", "mohamednashat");}
+        login.login("testuser2@gmail.com", "password123");}
     protected void userinregpage() {
         home.openLoginPage();
         login.login("mohamed@gmail.com", "mohamednashat");

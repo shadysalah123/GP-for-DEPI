@@ -30,7 +30,7 @@ public class SucseesRegPage {
         driver.findElement(myaccbtn).click();}
     //                  ===== ASSERTION  =====
     public void Assert_user_reg_succesful  (){
+        Assert.assertTrue(driver.findElement(successRegmessage).isDisplayed());
         driver.findElement(myAccountMenu).click();
-        Assert.assertTrue(driver.findElement(myaccbtn).isDisplayed());
-        Assert.assertTrue(driver.findElement(successRegmessage).isDisplayed());}
+        Assert.assertTrue(driver.findElement(myaccbtn).isDisplayed());}
 }

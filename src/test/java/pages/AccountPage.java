@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.List;
@@ -22,7 +23,8 @@ public class AccountPage {
     By orderHistoryLink = By.linkText("View your order history");
     By newsletterLink = By.linkText("Subscribe / unsubscribe to newsletter");
     By logoutLink = By.xpath("//*[@id=\"column-right\"]/div/a[14]");
-
+    By myAccountMenu = By.xpath("//i[@class=\"fa-solid fa-user\"]");
+    By myaccbtn = By.xpath("//*[@id=\"top\"]/div/div/div[2]/ul/li[2]/div/ul/li[1]/a");
     //                  ===== Constructor ======
     public AccountPage(WebDriver driver) {
         this.driver = driver;
@@ -51,5 +53,10 @@ public class AccountPage {
         wait.until(ExpectedConditions.elementToBeClickable(logoutLink));
         driver.findElement(logoutLink).click();}
     //                  ===== ASSERTION  =====
-
+    public void Assertion_login_invalidemail () {
+        wait.until(ExpectedConditions.presenceOfElementLocated(pageTitle));
+        Assert.assertTrue(driver.findElement(pageTitle).isDisplayed());
+        driver.findElement(myAccountMenu).click();
+        Assert.assertTrue(driver.findElement(myaccbtn).isDisplayed());
+    }
 }
