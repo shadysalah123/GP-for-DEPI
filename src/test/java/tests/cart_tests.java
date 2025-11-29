@@ -157,7 +157,6 @@ public class cart_tests extends test_base {
         home.openShoppingCart();
         Assert.assertTrue(cart.getCartItemsCount() > 0, "Cart should contain the added product");
 
-        account.logout();
         sleep(2000);
 
         loginWithExistingAccount();

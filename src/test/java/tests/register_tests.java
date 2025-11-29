@@ -1,6 +1,5 @@
 package tests;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class register_tests extends test_base {
@@ -8,7 +7,7 @@ public class register_tests extends test_base {
     @Test
     public void successful_user_registration() {
         home.openRegisterPage();
-        register.registerNewUser("Test", "User", "testuser@gmail.com", "password123", true);
+        register.registerNewUser("Test", "User", "testuser@gmail.com", "0114499de", true);
         register.agreeToPrivacyPolicy();
         register.clickContinue();
         sucseesRegPage.Assert_user_reg_succesful();

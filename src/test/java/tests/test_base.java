@@ -30,7 +30,7 @@ public class test_base {
         //  ===== Use WebDriverManager to automatically manage driver binaries =====
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito");
+        //options.addArguments("--incognito");
         options.addArguments("--start-maximized");
         options.addArguments("--disable-blink-features=AutomationControlled");
         driver = new ChromeDriver(options);
@@ -52,7 +52,7 @@ public class test_base {
         driver.get("http://localhost/opencartproject/index.php?route=common/home&language=en-gb");
     }
 
-    @AfterMethod
+   @AfterMethod
     public void tearDown() {
         driver.quit();
     }

@@ -25,11 +25,8 @@ public class newsletterpage {
     //                  ===== ACTIONS =====
     public boolean check_for_subscrippton(){
         WebElement subscribeswich = driver.findElement(subscribecheckbox);
-        String checkbox_coler = subscribeswich.getCssValue("");
-        if(checkbox_coler==""){
-            return true;
-        }
-        else {return false;}
+        boolean isCheckedBefore = subscribeswich.isSelected();
+        return isCheckedBefore;
         }
     public void click_con_btn (){
         wait.until(ExpectedConditions.elementToBeClickable(continueBtn));
@@ -39,6 +36,7 @@ public class newsletterpage {
         driver.findElement(backbtn).click();}
     //                  ===== ASSERTION  =====
     public void Assert_user_subs_newslettter(){
+        wait.until(ExpectedConditions.elementToBeClickable(subscribecheckbox));
         Assert.assertTrue(check_for_subscrippton());}
     public void Assert_user_notsubs_newslettter(){
         Assert.assertFalse(check_for_subscrippton());}
